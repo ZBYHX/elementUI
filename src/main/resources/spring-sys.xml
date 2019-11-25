@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- 用户表的相关配置 -->
+	<bean name="userDao" class="sys.dao.impl.UserDaoImpl" parent="baseDao" >
+		<!-- <property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property> -->
+	</bean>
+	<bean name="userService" class="sys.service.impl.UserServiceImpl" parent="baseService" >
+		<property name="userDao">
+			<ref bean="userDao" />
+		</property>
+	</bean>
+	<bean name="userAction" class="sys.action.UserAction" parent="baseAction" scope="prototype" >
+		<property name="userService">
+			<ref bean="userService" />
+		</property>
+	</bean>
+	
+	
+	<!-- 文章表的相关配置 -->
+	<bean name="articlesDao" class="sys.dao.impl.ArticlesDaoImpl" parent="baseDao" >
+		<!-- <property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property> -->
+	</bean>
+	<bean name="articlesService" class="sys.service.impl.ArticlesServiceImpl" parent="baseService" >
+		<property name="articlesDao">
+			<ref bean="articlesDao" />
+		</property>
+	</bean>
+	<bean name="articlesAction" class="sys.action.ArticlesAction" parent="baseAction" scope="prototype" >
+		<property name="articlesService">
+			<ref bean="articlesService" />
+		</property>
+	</bean>
+	
+	
+	<!-- 节点信息的相关配置 -->
+	<bean name="treeNodeDao" class="sys.dao.impl.TreeNodeDaoImpl" parent="baseDao" >
+		<!-- <property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property> -->
+	</bean>
+	<bean name="treeNodeService" class="sys.service.impl.TreeNodeServiceImpl" parent="baseService" >
+		<property name="treeNodeDao">
+			<ref bean="treeNodeDao" />
+		</property>
+	</bean>
+	<bean name="treeNodeAction" class="sys.action.TreeNodeAction" parent="baseAction" scope="prototype" >
+		<property name="treeNodeService">
+			<ref bean="treeNodeService" />
+		</property>
+	</bean>
+	
+</beans>
+
+

@@ -1,0 +1,81 @@
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+  <display-name>Archetype Created Web Application</display-name>
+  
+  
+	<!-- 1、spring和web集成 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<!-- 4、防止内存泄露、缓存清除监听器 -->
+	<listener>
+		<listener-class>
+			org.springframework.web.util.IntrospectorCleanupListener
+		</listener-class>
+	</listener>
+
+	<!-- 5、把session的关闭延迟到jsp页面显示之后，请配在struts2上面。 -->
+	<filter>
+		<filter-name>OpenSessionInView</filter-name>
+		<filter-class>
+			org.springframework.orm.hibernate5.support.OpenSessionInViewFilter
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>OpenSessionInView</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- 配置tomcat允许跨域访问 -->
+	<filter>
+		<filter-name>corsFilter</filter-name>
+		<filter-class>
+			util.CorsFilter
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>corsFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- JWT验证过滤器 -->
+	<filter>
+		<filter-name>jwtFilter</filter-name>
+		<filter-class>jwt.JwtFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>jwtFilter</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+	
+	<!-- 3、中文乱码处理 -->
+	<filter>
+		<filter-name>FilterEncoding</filter-name>
+		<filter-class>util.EncodingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>FilterEncoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- 2、struts2的中央控制器 -->
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+  	
+  	
+  	
+  
+</web-app>

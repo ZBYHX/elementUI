@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="sys.entity.TreeNode" table="t_tree_node">
+		<id name="tree_node_id" type="java.lang.Integer">
+			<column name="tree_node_id"/>
+			<generator class="assigned"></generator>
+		</id>
+		<property name="tree_node_name" type="java.lang.String">
+			<column name="tree_node_name"/>
+		</property>
+		<property name="tree_node_type" type="java.lang.Integer">
+			<column name="tree_node_type"/>
+		</property>
+		<property name="url" type="java.lang.String">
+			<column name="url"/>
+		</property>
+		<property name="position" type="java.lang.Integer">
+			<column name="position"/>
+		</property>
+		<property name="icon" type="java.lang.String">
+			<column name="icon"/>
+		</property>
+		
+		<bag name="childNodes" inverse="true" cascade="save-update" order-by="position asc" >
+			<key column="parent_node_id"></key>
+			<one-to-many class="sys.entity.TreeNode" />
+		</bag>
+		<many-to-one name="parentNode" class="sys.entity.TreeNode" column="parent_node_id" />
+		
+	</class>
+</hibernate-mapping>

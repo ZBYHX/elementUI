@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="sys" namespace="/sys" extends="base" abstract="false" >
+		<action name="userAction_*" class="sys.action.UserAction" method="{1}">
+			<result name="msg">/msg.jsp</result>
+		</action>
+		<action name="articlesAction_*" class="sys.action.ArticlesAction" method="{1}">
+			<result name="msg">/msg.jsp</result>
+		</action>
+		<action name="treeNodeAction_*" class="sys.action.TreeNodeAction" method="{1}">
+			<result name="msg">/msg.jsp</result>
+		</action>
+		<action name="vuexAction_*" class="sys.action.VuexAction" method="{1}">
+			<result name="msg">/msg.jsp</result>
+		</action>
+		
+	</package>
+</struts>

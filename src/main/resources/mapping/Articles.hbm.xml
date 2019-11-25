@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="sys.entity.Articles" table="t_articles">
+		<id name="id" type="java.lang.Integer">
+			<column name="id"/>
+			<generator class="native"></generator>
+		</id>
+		<property name="title" type="java.lang.String">
+			<column name="title"/>
+		</property>
+		<property name="body" type="java.lang.String">
+			<column name="body"/>
+		</property>
+	</class>
+</hibernate-mapping>
