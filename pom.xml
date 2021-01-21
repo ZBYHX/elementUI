@@ -22,7 +22,7 @@
 		<jstl.version>1.2</jstl.version>
 		<standard.version>1.1.2</standard.version>
 		<tomcat-jsp-api.version>8.5.20</tomcat-jsp-api.version>
-		<jackson.version>2.9.3</jackson.version>
+		<jackson.version>2.12.1</jackson.version>
 		<jjwt.version>0.9.1</jjwt.version>
 		<java-jwt.version>3.4.0</java-jwt.version>
 	</properties>
